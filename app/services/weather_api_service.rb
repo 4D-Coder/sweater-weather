@@ -1,12 +1,9 @@
 class WeatherApiService
-  def get_forecast_by(city)
-    # endpoint = '/v1/current.json'
-    # response = conn.get(endpoint, params)
-    # params = { key: ENV["weather_api_key"], q: city, format: 'json' }
+  def get_forecast_by(lat, lng)
     response = conn.get('/v1/forecast.json') do |req|
-      # req.headers['Content-Type'] = 'application/json'
+      req.headers['Content-Type'] = 'application/json'
       req.params['key'] = ENV["weather_api_key"]
-      req.params['q'] = city
+      req.params['q'] = "#{lat},#{lng}"
       req.params['format'] = 'json'
     end
   end
