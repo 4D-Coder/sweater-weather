@@ -3,7 +3,7 @@ class WeatherApiService
     # endpoint = '/v1/current.json'
     # response = conn.get(endpoint, params)
     # params = { key: ENV["weather_api_key"], q: city, format: 'json' }
-    response = conn.get('/v1/current.json') do |req|
+    response = conn.get('/v1/forecast.json') do |req|
       # req.headers['Content-Type'] = 'application/json'
       req.params['key'] = ENV["weather_api_key"]
       req.params['q'] = city
