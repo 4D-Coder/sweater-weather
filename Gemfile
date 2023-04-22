@@ -46,6 +46,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
   gem "pry"
+  gem "pry-rails"
   gem "rspec-rails"
   gem "vcr" # https://github.com/vcr/vcr
   gem "webmock" # https://github.com/bblimke/webmock

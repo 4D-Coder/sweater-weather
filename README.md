@@ -9,12 +9,10 @@
   
   [Visit Psydiary Today!](https://secure-crag-03925.herokuapp.com/)
 <br>
-  <h3 align="center">🍄 Psydiary—The App to Bring You Home 🍄</h3>
+  <h3 align="center">Sweater Weather</h3>
+  <p>We would like to see a README file included in your project that outlines the learning goals, how someone can clone and set up your application and where they can get their own API keys, and happy path endpoint use.</p>
 <br>
-  <p align="center">
-    An app to track your psilocybin microdosing protocol with everything from daily mood metrics and monthly trend representation to AI generated journal prompts.
-    <br />
-  </p>
+
 </div>
 <br>
 
