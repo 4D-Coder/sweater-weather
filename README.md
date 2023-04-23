@@ -2,12 +2,6 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://secure-crag-03925.herokuapp.com/">
-    <img src="https://user-images.githubusercontent.com/114954379/233477958-2d09ebc7-8585-4d78-8f5b-381fd976447c.png" height="200">
-  </a>
-  
-  [Visit Psydiary Today!](https://secure-crag-03925.herokuapp.com/)
 <br>
   <h3 align="center">Sweater Weather</h3>
   <p>We would like to see a README file included in your project that outlines the learning goals, how someone can clone and set up your application and where they can get their own API keys, and happy path endpoint use.</p>
