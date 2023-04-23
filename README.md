@@ -15,9 +15,6 @@
 ### Project By
 <table>
   <tr>
-    <td><img src="https://avatars.githubusercontent.com/4D-Coder"></td>
-  </tr>
-  <tr>
     <td>Antonio King Hunt</td>
   </tr>
   <tr>
