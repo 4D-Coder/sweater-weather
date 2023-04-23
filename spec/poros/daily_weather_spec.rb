@@ -27,8 +27,8 @@ RSpec.describe DailyWeather do
         expect(todays_weather.date).to eq(todays_weather_data[:date])
         expect(todays_weather.sunrise).to eq(todays_weather_data[:astro][:sunrise])
         expect(todays_weather.sunset).to eq(todays_weather_data[:astro][:sunset])
-        expect(todays_weather.max_temp).to eq(todays_weather_data[:day][:max_temp_f])
-        expect(todays_weather.min_temp).to eq(todays_weather_data[:day][:min_temp_f])
+        expect(todays_weather.max_temp).to eq(todays_weather_data[:day][:maxtemp_f])
+        expect(todays_weather.min_temp).to eq(todays_weather_data[:day][:mintemp_f])
         expect(todays_weather.condition).to eq(todays_weather_data[:day][:condition][:text])
         expect(todays_weather.icon).to eq(todays_weather_data[:day][:condition][:icon])
       end

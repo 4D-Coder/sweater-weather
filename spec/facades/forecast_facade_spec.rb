@@ -25,13 +25,13 @@ RSpec.describe ForecastFacade do
     
     before do
       @location_params = {"location"=>"denver,co"}
-      @forecast = described_class.new(map_quest_service, weather_service, @location_params)
+      @forecast_facade = described_class.new(map_quest_service, weather_service, @location_params)
     end
 
     context 'location_data' do
       it "can receive a location parameter and return a location object" do
         VCR.use_cassette('GET_mapquest_coordinates') do
-          coordinates = @forecast.location_coordinates
+          coordinates = @forecast_facade.location_coordinates
 
           expect(coordinates).to eq("39.74001,-104.99202")
         end
@@ -41,7 +41,7 @@ RSpec.describe ForecastFacade do
     context 'five_day_forecast' do
       it "returns forecast objects to be serialized" do
         VCR.use_cassette('GET_5_day_forecast', record: :new_episodes) do
-          five_day_forecast = @forecast.five_day_forecast
+          five_day_forecast = @forecast_facade.five_day_forecast
           
         end
       end

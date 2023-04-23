@@ -11,8 +11,8 @@ class DailyWeather
     @date = data[:date]
     @sunrise = data[:astro][:sunrise]
     @sunset = data[:astro][:sunset]
-    @max_temp = data[:day][:max_temp_f]
-    @min_temp = data[:day][:min_temp_f]
+    @max_temp = data[:day][:maxtemp_f]
+    @min_temp = data[:day][:mintemp_f]
     @condition = data[:day][:condition][:text]
     @icon = data[:day][:condition][:icon]
   end
