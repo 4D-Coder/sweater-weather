@@ -18,8 +18,16 @@ RSpec.describe SweaterWeatherFacade do
   end
 
   describe '.instance_methods' do
-    context 'retrieve_weather(city)' do
-      it 'can'
+    before do
+      @location_params = {"location"=>"denver,co"}
+    end
+
+    context 'five_day_forecast' do
+      it "can receive a location parameter and return create a forecast objects" do
+        VCR.use_cassette('GET_mapquest_coordinates', record: :new_episodes) do
+          SweaterWeatherFacade.new(@location_params).five_day_forecast
+        end
+      end
     end
   end
 end

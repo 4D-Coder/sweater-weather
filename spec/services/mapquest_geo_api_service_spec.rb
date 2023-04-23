@@ -4,13 +4,12 @@ RSpec.describe MapquestGeoApiService do
   describe 'instance methods' do
     context 'get_coordinates(city, state)' do
       before do
-        @city = "Denver"
-        @state = "CO"
+        @location_params = {"location"=>"denver,co"}
       end
       
       it 'You can pass it a city, state, and it returns co-ordinates' do
         VCR.use_cassette('GET mapquest coordinates') do
-          response = MapquestGeoApiService.new.get_coordinates(@city, @state)
+          response = MapquestGeoApiService.new.get_coordinates(@location_params)
 
           json = JSON.parse(response.body, symbolize_names: true)
           

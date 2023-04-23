@@ -7,8 +7,11 @@ RSpec.describe WeatherApiService do
 
     context 'get_days_forecast_by(city)' do
       before do
+        @location_params = {"location"=>"denver,co"}
+
         VCR.use_cassette('GET_mapquest_coordinates') do
-          response = mapquest_api_service.get_coordinates("Denver", "CO")
+          response = mapquest_api_service.get_coordinates(@location_params)
+          
           json = JSON.parse(response.body, symbolize_names: true)
 
           @lat = json[:results].first[:locations].first[:latLng][:lat]
@@ -18,7 +21,7 @@ RSpec.describe WeatherApiService do
 
       it "can retreive 5-day forecast and hourly forecast for each day" do
         VCR.use_cassette('GET 5_day_forecast') do
-          response = weather_api_service.get_days_forecast_by(@lat, @lng)
+          response = weather_api_service.get_5_day_forecast_by(@lat, @lng)
           json = JSON.parse(response.body, symbolize_names: true)
 
           expect(json.keys).to eq([:location, :current, :forecast])
