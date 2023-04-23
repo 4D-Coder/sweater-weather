@@ -8,31 +8,30 @@ RSpec.describe CurrentWeather do
       JSON.parse(response.body, symbolize_names: true)
     end
   end
+  let(:current_weather_data) { forecast_data[:current] }
 
   describe '.class_methods' do
     context '#initialize' do
       it 'exists' do
-        current_weather = CurrentWeather.new
-        expect(current_weather ).to be_a(CurrentWeather)
+        current_weather = CurrentWeather.new(current_weather_data)
+        expect(current_weather).to be_a(CurrentWeather)
       end
     end
   end
 
   describe '.instance_methods' do
-    let(:forecast) { Forecast.new(forecast_data)}
+    let(:current_weather) { CurrentWeather.new(current_weather_data) }
+
     context '#initialize' do
       it 'has_attributes' do
-        expect(forecast.data).to eq(forecast_data)
-        expect(forecast.id).to be_nil
-        expect(forecast.current_weather).to be_a(CurrentWeather)
-
-        expect(forecast.daily_weather).to be_an Array
-        expect(forecast.daily_weather.first).to be_a(DailyWeather)
-        expect(forecast.daily_weather.count).to eq(5)
-        
-        expect(forecast.hourly_weather).to be_an Array
-        expect(forecast.hourly_weather.first).to be_a(HourlyWeather)
-        expect(forecast.hourly_weather.count).to eq(24)
+        expect(current_weather.last_updated).to eq(current_weather_data[:last_updated])
+        expect(current_weather.temperature).to eq(current_weather_data[:temp_f])
+        expect(current_weather.feels_like).to eq(current_weather_data[:feelslike_f])
+        expect(current_weather.humidity).to eq(current_weather_data[:humidity])
+        expect(current_weather.uvi).to eq(current_weather_data[:uv])
+        expect(current_weather.visibility).to eq(current_weather_data[:vis_miles])
+        expect(current_weather.condition).to eq(current_weather_data[:condition][:text])
+        expect(current_weather.icon).to eq(current_weather_data[:condition][:icon])
       end
     end
   end
