@@ -12,7 +12,7 @@ RSpec.describe Forecast do
   describe '.class_methods' do
     context '#initialize' do
       it 'exists' do
-        forecast = Forecast.new
+        forecast = Forecast.new(forecast_data)
         expect(forecast).to be_a(Forecast)
       end
     end
@@ -28,9 +28,9 @@ RSpec.describe Forecast do
         expect(forecast.daily_weather.first).to be_a(DailyWeather)
         expect(forecast.daily_weather.count).to eq(5)
         
-        # expect(forecast.hourly_weather).to be_an Array
-        # expect(forecast.hourly_weather.first).to be_a(HourlyWeather)
-        # expect(forecast.hourly_weather.count).to eq(24)
+        expect(forecast.hourly_weather).to be_an Array
+        expect(forecast.hourly_weather.first).to be_a(HourlyWeather)
+        expect(forecast.hourly_weather.count).to eq(24)
       end
     end
   end
