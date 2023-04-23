@@ -18,6 +18,6 @@ class ForecastFacade
   def five_day_forecast
     response = @weather_service.get_5_day_forecast_by(location_coordinates)
     parsed = JSON.parse(response.body, symbolize_names: true)
-    require 'pry'; binding.pry
+    Forecast.new(parsed)
   end
 end
