@@ -11,6 +11,8 @@ RSpec.describe MapquestGeoApiService do
         VCR.use_cassette('GET mapquest coordinates') do
           response = MapquestGeoApiService.new.get_coordinates(@location_params)
 
+          expect(response.status).to eq(200)
+
           json = JSON.parse(response.body, symbolize_names: true)
           
           expect(json.keys).to include(:results)

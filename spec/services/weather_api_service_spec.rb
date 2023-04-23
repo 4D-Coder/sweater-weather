@@ -12,6 +12,9 @@ RSpec.describe WeatherApiService do
       it "can retreive 5-day forecast and hourly forecast for each day" do
         VCR.use_cassette('GET 5_day_forecast', record: :new_episodes ) do
           response = weather_api_service.get_5_day_forecast_by(@location_coordinates)
+
+          expect(response.status).to eq(200)
+          
           json = JSON.parse(response.body, symbolize_names: true)
 
           expect(json.keys).to eq([:location, :current, :forecast])

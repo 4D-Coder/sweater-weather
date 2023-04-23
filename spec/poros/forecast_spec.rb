@@ -22,15 +22,14 @@ RSpec.describe Forecast do
     let(:forecast) { Forecast.new(forecast_data)}
     context '#initialize' do
       it 'has_attributes' do
+        expect(forecast.id).to eq(nil)
         expect(forecast.current_weather).to be_a(CurrentWeather)
 
         expect(forecast.daily_weather).to be_an Array
         expect(forecast.daily_weather.first).to be_a(DailyWeather)
-        expect(forecast.daily_weather.count).to eq(5)
         
         expect(forecast.hourly_weather).to be_an Array
         expect(forecast.hourly_weather.first).to be_a(HourlyWeather)
-        expect(forecast.hourly_weather.count).to eq(24)
       end
     end
   end

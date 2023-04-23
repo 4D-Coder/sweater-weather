@@ -24,7 +24,7 @@ RSpec.describe HourlyWeather do
 
     context '#initialize' do
       it 'has_attributes' do
-        expect(hourly_weather.time).to eq(midnight_weather_data[:time])
+        expect(hourly_weather.time).to eq(midnight_weather_data[:time].to_time.strftime("%H:%M"))
         expect(hourly_weather.temperature).to eq(midnight_weather_data[:temp_f])
         expect(hourly_weather.condition).to eq(midnight_weather_data[:condition][:text])
         expect(hourly_weather.icon).to eq(midnight_weather_data[:condition][:icon])

@@ -41,8 +41,21 @@ RSpec.describe ForecastFacade do
     context 'five_day_forecast' do
       it "returns forecast objects to be serialized" do
         VCR.use_cassette('GET_5_day_forecast', record: :new_episodes) do
-          five_day_forecast = @forecast_facade.five_day_forecast
+          forecast = @forecast_facade.five_day_forecast
+
+          expect(forecast.current_weather).to be_a(CurrentWeather)
+
+          expect(forecast.daily_weather).to be_an Array
+          expect(forecast.daily_weather.count).to eq(5)
+          forecast.daily_weather.each do |day|
+            expect(day).to be_a(DailyWeather)
+          end
           
+          expect(forecast.hourly_weather).to be_an Array
+          expect(forecast.hourly_weather.count).to eq(24)
+          forecast.hourly_weather.each do |hour|
+            expect(hour).to be_a(HourlyWeather)
+          end
         end
       end
     end
