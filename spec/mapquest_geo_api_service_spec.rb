@@ -9,7 +9,7 @@ RSpec.describe MapquestGeoApiService do
       end
       
       it 'You can pass it a city, state, and it returns co-ordinates' do
-        VCR.use_cassette('mapquest_geo_api_service_spec.rb', record: :once) do
+        VCR.use_cassette('GET mapquest coordinates') do
           response = MapquestGeoApiService.new.get_coordinates(@city, @state)
 
           json = JSON.parse(response.body, symbolize_names: true)
