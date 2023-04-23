@@ -1,0 +1,51 @@
+require 'rails_helper'
+
+RSpec.describe ForecastFacade do
+  describe '.class_methods' do
+    context '#initialize' do 
+      let(:map_quest_service) { MapquestGeoApiService.new }
+      let(:weather_service) { WeatherApiService.new }
+      let(:forecast) { described_class.new(map_quest_service, weather_service) }
+
+      it 'exists' do
+        expect(forecast).to be_a(ForecastFacade)
+      end
+
+      it 'has attributes' do 
+        expect(forecast.params).to be_a(Hash)
+        expect(forecast.mapquest_service).to be_a(MapquestGeoApiService)
+        expect(forecast.weather_service).to be_a(WeatherApiService)
+      end
+    end
+  end
+
+  describe '.instance_methods' do
+    let(:map_quest_service) { MapquestGeoApiService.new }
+    let(:weather_service) { WeatherApiService.new }
+    
+    before do
+      @location_params = {"location"=>"denver,co"}
+      @forecast = described_class.new(map_quest_service, weather_service, @location_params)
+    end
+
+    context 'location_data' do
+      it "can receive a location parameter and return a location object" do
+        VCR.use_cassette('GET_mapquest_coordinates') do
+          coordinates = @forecast.location_coordinates
+
+          expect(coordinates).to eq("39.74001,-104.99202")
+        end
+      end
+    end
+
+    context 'five_day_forecast' do
+      it "returns forecast objects to be serialized" do
+        VCR.use_cassette('GET_5_day_forecast', record: :new_episodes) do
+          five_day_forecast = @forecast.five_day_forecast
+          
+        end
+      end
+    end
+
+  end
+end

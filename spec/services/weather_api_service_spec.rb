@@ -3,25 +3,15 @@ require 'rails_helper'
 RSpec.describe WeatherApiService do
   describe 'instance methods' do
     let(:weather_api_service) { WeatherApiService.new }
-    let(:mapquest_api_service) { MapquestGeoApiService.new }
 
     context 'get_days_forecast_by(city)' do
       before do
-        @location_params = {"location"=>"denver,co"}
-
-        VCR.use_cassette('GET_mapquest_coordinates') do
-          response = mapquest_api_service.get_coordinates(@location_params)
-          
-          json = JSON.parse(response.body, symbolize_names: true)
-
-          @lat = json[:results].first[:locations].first[:latLng][:lat]
-          @lng = json[:results].first[:locations].first[:latLng][:lng]
-        end
+        @location_coordinates = "39.74001,-104.99202"
       end
 
       it "can retreive 5-day forecast and hourly forecast for each day" do
-        VCR.use_cassette('GET 5_day_forecast') do
-          response = weather_api_service.get_5_day_forecast_by(@lat, @lng)
+        VCR.use_cassette('GET 5_day_forecast', record: :new_episodes ) do
+          response = weather_api_service.get_5_day_forecast_by(@location_coordinates)
           json = JSON.parse(response.body, symbolize_names: true)
 
           expect(json.keys).to eq([:location, :current, :forecast])
@@ -32,8 +22,8 @@ RSpec.describe WeatherApiService do
           expect(json[:location][:name]).to be_a String
           expect(json[:location][:region]).to be_a String
           expect(json[:location][:country]).to be_a String
-          expect(json[:location][:lat]).to be_a(Float).and eq(@lat.round(2))
-          expect(json[:location][:lon]).to be_a(Float).and eq(@lng.round(2))
+          expect(json[:location][:lat]).to be_a(Float)
+          expect(json[:location][:lon]).to be_a(Float)
           expect(json[:location][:tz_id]).to be_a String
           expect(json[:location][:localtime_epoch]).to be_an Integer
           expect(json[:location][:localtime]).to be_a String

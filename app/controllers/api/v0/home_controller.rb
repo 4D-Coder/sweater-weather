@@ -1,7 +1,10 @@
 class Api::V0::HomeController < ApplicationController
 
   def index
-    render json: SweaterWeatherFacade.new(index_params).five_day_forecast, status: 200
+    mapquest_service = MapquestGeoApiService.new
+    weather_service = WeatherApiService.new
+    
+    render json: ForecastFacade.new(mapquest_service, weather_service, index_params).five_day_forecast, status: 200
   end
 
   private
