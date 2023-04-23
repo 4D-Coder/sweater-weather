@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe WeatherApiService do
   describe 'instance methods' do
+    let(:weather_api_service) { WeatherApiService.new }
+    let(:mapquest_api_service) { MapquestGeoApiService.new }
+
     context 'get_days_forecast_by(city)' do
       before do
         VCR.use_cassette('GET_mapquest_coordinates') do
-          response = MapquestGeoApiService.new.get_coordinates("Denver", "CO")
+          response = mapquest_api_service.get_coordinates("Denver", "CO")
           json = JSON.parse(response.body, symbolize_names: true)
 
           @lat = json[:results].first[:locations].first[:latLng][:lat]
@@ -13,9 +16,9 @@ RSpec.describe WeatherApiService do
         end
       end
 
-      it "can retreive current day's weather conditions and hourly forecast" do
-        VCR.use_cassette('GET current_day_forecast') do
-          response = WeatherApiService.new.get_days_forecast_by(@lat, @lng)
+      it "can retreive 5-day forecast and hourly forecast for each day" do
+        VCR.use_cassette('GET 5_day_forecast') do
+          response = weather_api_service.get_days_forecast_by(@lat, @lng)
           json = JSON.parse(response.body, symbolize_names: true)
 
           expect(json.keys).to eq([:location, :current, :forecast])
@@ -44,41 +47,42 @@ RSpec.describe WeatherApiService do
 
           expect(json[:forecast]).to be_a Hash
           expect(json[:forecast][:forecastday]).to be_an Array
-          expect(json[:forecast][:forecastday][0][:hour]).to be_an Array
 
-          forecast_day_hours = json[:forecast][:forecastday][0][:hour]
-          
-          expect(forecast_day_hours.count).to eq(24)
+          forecastdays = json[:forecast][:forecastday]
+          expect(forecastdays.count).to eq(5)
 
-          forecast_day_hours.each do |hour|
-            expect(hour[:time]).to be_a String
-            expect(hour[:temp_f]).to be_a Float
+          forecastdays.each do |day|
+            expect(day[:date]).to be_a String
+            expect(day[:astro]).to be_a Hash
+            expect(day[:astro][:sunrise]).to be_a String
+            expect(day[:astro][:sunset]).to be_a String
+            
+            expect(day[:day]).to be_a Hash
+            day_data = day[:day]
 
-            condition = hour[:condition]
+            expect(day_data[:maxtemp_f]).to be_a Float
+            expect(day_data[:mintemp_f]).to be_a Float
 
-            expect(condition).to be_a Hash
-            expect(condition[:text]).to be_a String
-            expect(condition[:icon]).to be_a String
-          end
-        end
-      end
-    end
 
-    context 'get_5_day_forecast_by(city)' do
-      before do
-        VCR.use_cassette('GET_mapquest_coordinates') do
-          response = MapquestGeoApiService.new.get_coordinates("Denver", "CO")
-          json = JSON.parse(response.body, symbolize_names: true)
+            expect(day_data[:condition]).to be_a Hash
+            expect(day_data[:condition][:text]).to be_a String
+            expect(day_data[:condition][:icon]).to be_a String
 
-          @lat = json[:results].first[:locations].first[:latLng][:lat]
-          @lng = json[:results].first[:locations].first[:latLng][:lng]
-        end
+            expect(day[:hour]).to be_an Array
 
-        it "can retreive 5-day forecast data" do
-          VCR.use_cassette('GET 5_day_forecast') do
-            response = WeatherApiService.new.get_5_day_forecast_by(@lat, @lng)
-            require 'pry'; binding.pry
-            json = JSON.parse(response.body, symbolize_names: true)
+            hours = day[:hour]
+            expect(hours.count).to eq(24)
+
+            hours.each do |hour|
+              expect(hour[:time]).to be_a String
+              expect(hour[:temp_f]).to be_a Float
+
+              condition = hour[:condition]
+              
+              expect(condition).to be_a Hash
+              expect(condition[:text]).to be_a String
+              expect(condition[:icon]).to be_a String
+            end
           end
         end
       end
