@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Forecast do
+RSpec.describe CurrentWeather do
   let(:location_coordinates) {"39.74001,-104.99202"}
   let(:forecast_data) do
     VCR.use_cassette('GET 5_day_forecast', record: :new_episodes ) do
@@ -12,8 +12,8 @@ RSpec.describe Forecast do
   describe '.class_methods' do
     context '#initialize' do
       it 'exists' do
-        forecast = Forecast.new
-        expect(forecast).to be_a(Forecast)
+        current_weather = CurrentWeather.new
+        expect(current_weather ).to be_a(CurrentWeather)
       end
     end
   end

@@ -3,7 +3,7 @@ class Location
                 :city_state,
                 :coordinates
 
-  def initialize(data)
+  def initialize(data = {})
     @data = data
     @city_state = @data[:results].first[:providedLocation][:location]
     @coordinates = coordinates
