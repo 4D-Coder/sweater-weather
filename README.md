@@ -2,12 +2,6 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://secure-crag-03925.herokuapp.com/">
-    <img src="https://user-images.githubusercontent.com/114954379/233477958-2d09ebc7-8585-4d78-8f5b-381fd976447c.png" height="200">
-  </a>
-  
-  [Visit Psydiary Today!](https://secure-crag-03925.herokuapp.com/)
 <br>
   <h3 align="center">Sweater Weather</h3>
   <p>We would like to see a README file included in your project that outlines the learning goals, how someone can clone and set up your application and where they can get their own API keys, and happy path endpoint use.</p>
@@ -201,42 +195,18 @@ Don't forget to give the project a star! Thanks again!
 
 ## Acknowledgements
 
-### PsyDiary Team
+### Project By
 <table>
   <tr>
-    <td><img src="https://avatars.githubusercontent.com/torienyart"></td>
-    <td><img src="https://avatars.githubusercontent.com/Bobsters986"></td>
     <td><img src="https://avatars.githubusercontent.com/4D-Coder"></td>
-    <td><img src="https://avatars.githubusercontent.com/davejm8"></td>
-    <td><img src="https://avatars.githubusercontent.com/sgwalker327"></td>
   </tr>
   <tr>
-    <td>Tori Enyart</td>
-    <td>Bobby Luly</td>
     <td>Antonio King Hunt</td>
-    <td>David Marino</td>
-    <td>Sam Walker</td>
   </tr>
   <tr>
-    <td>
-      <a href="https://github.com/torienyart">GitHub</a><br>
-      <a href="https://www.linkedin.com/in/victoria-enyart-595052155/">LinkedIn</a>
-    </td>
-    <td>
-      <a href="https://github.com/Bobsters986">GitHub</a><br>
-      <a href="https://www.linkedin.com/in/bobbyy-luly-217653260/">LinkedIn</a>
-    </td>
     <td>
       <a href="https://github.com/4D-Coder">GitHub</a><br>
       <a href="https://www.linkedin.com/in/antoniokinghunt/">LinkedIn</a>
-    </td>
-    <td>
-      <a href="https://github.com/davejm8">GitHub</a><br>
-      <a href="https://www.linkedin.com/in/davidjmarino8/">LinkedIn</a>
-    </td>
-    <td>
-      <a href="https://github.com/sgwalker327">GitHub</a><br>
-      <a href="https://www.linkedin.com/in/sam-walker-95a49630/">LinkedIn</a>
     </td>
   </tr>
 </table>
