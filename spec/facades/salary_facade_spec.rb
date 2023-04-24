@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SalaryFacade do
   describe '.class_methods' do
     context '#initialize' do 
-      let(:teleport_service) { TeleportApiService.new }
+      let(:teleport_service) { TeleportApiService.new. }
       let(:salary) { described_class.new() }
 
       it 'exists' do

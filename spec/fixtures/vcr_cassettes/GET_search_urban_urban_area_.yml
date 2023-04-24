@@ -1,0 +1,147 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.teleport.org/api/urban_areas/slug:bozeman/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept:
+      - application/vnd.teleport.v1+json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.teleport.v1+json; charset=utf-8
+      Content-Length:
+      - '604'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 24 Apr 2023 15:59:24 GMT
+      Access-Control-Max-Age:
+      - '600'
+      Cache-Control:
+      - public, max-age=300
+      Server:
+      - nginx
+      X-Apiproxy-Cache-Status:
+      - HIT
+      Vary:
+      - Origin,Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 995664ee945c06fc706b5cb8e0e650dc.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - SEA19-C1
+      X-Amz-Cf-Id:
+      - RKYsgACFK34XR4UX36iqhr90G-s5vsF4qun41rdNZJl5Ac1X9_j8OA==
+      Age:
+      - '22'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"_links":{"curies":[{"href":"https://developers.teleport.org/api/resources/Location/#!/relations/{rel}/","name":"location","templated":true},{"href":"https://developers.teleport.org/api/resources/City/#!/relations/{rel}/","name":"city","templated":true},{"href":"https://developers.teleport.org/api/resources/UrbanArea/#!/relations/{rel}/","name":"ua","templated":true},{"href":"https://developers.teleport.org/api/resources/Country/#!/relations/{rel}/","name":"country","templated":true},{"href":"https://developers.teleport.org/api/resources/Admin1Division/#!/relations/{rel}/","name":"a1","templated":true},{"href":"https://developers.teleport.org/api/resources/Timezone/#!/relations/{rel}/","name":"tz","templated":true}],"self":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/"},"ua:admin1-divisions":[{"href":"https://api.teleport.org/api/countries/iso_alpha2:US/admin1_divisions/geonames:MT/","name":"Montana"}],"ua:cities":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/cities/"},"ua:continent":{"href":"https://api.teleport.org/api/continents/geonames:NA/","name":"North
+        America"},"ua:countries":[{"href":"https://api.teleport.org/api/countries/iso_alpha2:US/","name":"United
+        States"}],"ua:details":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/details/"},"ua:identifying-city":{"href":"https://api.teleport.org/api/cities/geonameid:5641727/","name":"Bozeman"},"ua:images":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/images/"},"ua:primary-cities":[{"href":"https://api.teleport.org/api/cities/geonameid:5641727/","name":"Bozeman"}],"ua:salaries":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/salaries/"},"ua:scores":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/scores/"}},"bounding_box":{"latlon":{"east":-110.925179,"north":45.792664,"south":45.607793,"west":-111.204643}},"continent":"North
+        America","full_name":"Bozeman, Montana","is_government_partner":false,"mayor":"Carson
+        Taylor","name":"Bozeman","slug":"bozeman","teleport_city_url":"https://teleport.org/cities/bozeman/","ua_id":"c815c"}'
+  recorded_at: Mon, 24 Apr 2023 15:59:46 GMT
+- request:
+    method: get
+    uri: https://api.teleport.org/api/urban_areas/slug:bozeman/salaries
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept:
+      - application/vnd.teleport.v1+json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.teleport.v1+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 24 Apr 2023 16:07:49 GMT
+      Access-Control-Max-Age:
+      - '600'
+      Cache-Control:
+      - public, max-age=300
+      Server:
+      - nginx
+      X-Apiproxy-Cache-Status:
+      - MISS
+      Vary:
+      - Origin,Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 4d8620b80ebe37d366388e117039aa8e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - SEA19-C1
+      X-Amz-Cf-Id:
+      - b8SkSWiWZTjxIYT-SgJmPwIQMnsgF0SbL-jbe_Nw0L91d7IsSJ4M8w==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"_links":{"curies":[{"href":"https://developers.teleport.org/api/resources/Location/#!/relations/{rel}/","name":"location","templated":true},{"href":"https://developers.teleport.org/api/resources/City/#!/relations/{rel}/","name":"city","templated":true},{"href":"https://developers.teleport.org/api/resources/UrbanArea/#!/relations/{rel}/","name":"ua","templated":true},{"href":"https://developers.teleport.org/api/resources/Country/#!/relations/{rel}/","name":"country","templated":true},{"href":"https://developers.teleport.org/api/resources/Admin1Division/#!/relations/{rel}/","name":"a1","templated":true},{"href":"https://developers.teleport.org/api/resources/Timezone/#!/relations/{rel}/","name":"tz","templated":true}],"self":{"href":"https://api.teleport.org/api/urban_areas/slug:bozeman/salaries/"}},"salaries":[{"job":{"id":"ACCOUNT-MANAGER","title":"Account
+        Manager"},"salary_percentiles":{"percentile_25":36635.7952984741,"percentile_50":45868.46937123265,"percentile_75":57427.89163764481}},{"job":{"id":"ACCOUNTANT","title":"Accountant"},"salary_percentiles":{"percentile_25":34741.844696627646,"percentile_50":41259.8258730967,"percentile_75":49000.65744763136}},{"job":{"id":"ADMINISTRATIVE-ASSISTANT","title":"Administrative
+        Assistant"},"salary_percentiles":{"percentile_25":42223.926381718535,"percentile_50":50850.20736387743,"percentile_75":61238.82382640924}},{"job":{"id":"ARCHITECT","title":"Architect"},"salary_percentiles":{"percentile_25":37049.11649147415,"percentile_50":45876.831183640956,"percentile_75":56807.9306273505}},{"job":{"id":"ATTORNEY","title":"Attorney"},"salary_percentiles":{"percentile_25":45933.68112513229,"percentile_50":62030.12554932263,"percentile_75":83767.21354386436}},{"job":{"id":"BUSINESS-ANALYST","title":"Business
+        Analyst"},"salary_percentiles":{"percentile_25":40126.499814896946,"percentile_50":48135.133302859365,"percentile_75":57742.16711580357}},{"job":{"id":"BUSINESS-DEVELOPMENT","title":"Business
+        Development"},"salary_percentiles":{"percentile_25":40881.042419512865,"percentile_50":54161.46454836308,"percentile_75":71756.10181171465}},{"job":{"id":"C-LEVEL-EXECUTIVE","title":"C
+        Level Executive"},"salary_percentiles":{"percentile_25":69039.16508253719,"percentile_50":103507.34486065431,"percentile_75":155183.95141792303}},{"job":{"id":"CASHIER","title":"Cashier"},"salary_percentiles":{"percentile_25":11602.456501201543,"percentile_50":16254.45948269213,"percentile_75":22771.682276690197}},{"job":{"id":"CHEF","title":"Chef"},"salary_percentiles":{"percentile_25":21201.317528749387,"percentile_50":26041.00298779173,"percentile_75":31985.457304274398}},{"job":{"id":"CHEMICAL-ENGINEER","title":"Chemical
+        Engineer"},"salary_percentiles":{"percentile_25":43008.808816932986,"percentile_50":52115.40829049597,"percentile_75":63150.22098951446}},{"job":{"id":"CIVIL-ENGINEER","title":"Civil
+        Engineer"},"salary_percentiles":{"percentile_25":43026.82742066309,"percentile_50":51294.83817907452,"percentile_75":61151.625196373636}},{"job":{"id":"CONTENT-MARKETING","title":"Content
+        Marketing"},"salary_percentiles":{"percentile_25":28144.548132662447,"percentile_50":35238.425052649785,"percentile_75":44120.32463047926}},{"job":{"id":"COPYWRITER","title":"Copywriter"},"salary_percentiles":{"percentile_25":33749.40590640025,"percentile_50":41499.760700264036,"percentile_75":51029.93939969102}},{"job":{"id":"CUSTOMER-SUPPORT","title":"Customer
+        Support"},"salary_percentiles":{"percentile_25":19937.348956878715,"percentile_50":25632.91003672964,"percentile_75":32955.5387916498}},{"job":{"id":"DATA-ANALYST","title":"Data
+        Analyst"},"salary_percentiles":{"percentile_25":33498.7043892499,"percentile_50":40316.07055903681,"percentile_75":48520.84804338995}},{"job":{"id":"DATA-SCIENTIST","title":"Data
+        Scientist"},"salary_percentiles":{"percentile_25":54916.70343071813,"percentile_50":66340.16139900635,"percentile_75":80139.86163605854}},{"job":{"id":"DENTIST","title":"Dentist"},"salary_percentiles":{"percentile_25":70275.18133134596,"percentile_50":91522.26082326462,"percentile_75":119193.20686925716}},{"job":{"id":"ELECTRICAL-ENGINEER","title":"Electrical
+        Engineer"},"salary_percentiles":{"percentile_25":42393.669865148884,"percentile_50":50542.51867711688,"percentile_75":60257.72721145705}},{"job":{"id":"EXECUTIVE-ASSISTANT","title":"Executive
+        Assistant"},"salary_percentiles":{"percentile_25":27625.70318523155,"percentile_50":33413.36881385705,"percentile_75":40413.567321887414}},{"job":{"id":"FASHION-DESIGNER","title":"Fashion
+        Designer"},"salary_percentiles":{"percentile_25":24331.62482864862,"percentile_50":31410.128750760832,"percentile_75":40547.89579764238}},{"job":{"id":"FINANCE-MANAGER","title":"Finance
+        Manager"},"salary_percentiles":{"percentile_25":45220.262625621566,"percentile_50":57122.58003224621,"percentile_75":72157.67799834893}},{"job":{"id":"FINANCIAL-ANALYST","title":"Financial
+        Analyst"},"salary_percentiles":{"percentile_25":39021.04518385877,"percentile_50":45412.35538558715,"percentile_75":52850.50700076938}},{"job":{"id":"GRAPHIC-DESIGNER","title":"Graphic
+        Designer"},"salary_percentiles":{"percentile_25":27426.63741817526,"percentile_50":32658.206163344537,"percentile_75":38887.68475499374}},{"job":{"id":"HARDWARE-ENGINEER","title":"Hardware
+        Engineer"},"salary_percentiles":{"percentile_25":37692.32202526886,"percentile_50":45794.369664773505,"percentile_75":55637.97028975874}},{"job":{"id":"HUMAN-RESOURCES-MANAGER","title":"Human
+        Resources Manager"},"salary_percentiles":{"percentile_25":35717.31865679103,"percentile_50":43616.07645686119,"percentile_75":53261.61640997259}},{"job":{"id":"IT-MANAGER","title":"IT
+        Manager"},"salary_percentiles":{"percentile_25":47770.366004352814,"percentile_50":58536.692615982865,"percentile_75":71729.49820199907}},{"job":{"id":"INDUSTRIAL-DESIGNER","title":"Industrial
+        Designer"},"salary_percentiles":{"percentile_25":32515.100190024565,"percentile_50":39942.70199955893,"percentile_75":49067.03143160032}},{"job":{"id":"INTERIOR-DESIGNER","title":"Interior
+        Designer"},"salary_percentiles":{"percentile_25":27851.347411434333,"percentile_50":33606.09666016789,"percentile_75":40549.913655842945}},{"job":{"id":"LECTURER","title":"Lecturer"},"salary_percentiles":{"percentile_25":36455.56887814071,"percentile_50":44922.22917261888,"percentile_75":55355.237510703526}},{"job":{"id":"MARKETING-MANAGER","title":"Marketing
+        Manager"},"salary_percentiles":{"percentile_25":36429.22948766342,"percentile_50":45756.02695111927,"percentile_75":57470.7187551289}},{"job":{"id":"MECHANICAL-ENGINEER","title":"Mechanical
+        Engineer"},"salary_percentiles":{"percentile_25":46956.82824197102,"percentile_50":55055.16702633511,"percentile_75":64550.17363349981}},{"job":{"id":"MOBILE-DEVELOPER","title":"Mobile
+        Developer"},"salary_percentiles":{"percentile_25":42682.475752389066,"percentile_50":53382.24002575386,"percentile_75":66764.25160290037}},{"job":{"id":"NURSE","title":"Nurse"},"salary_percentiles":{"percentile_25":37379.52133065633,"percentile_50":41583.66284299042,"percentile_75":46260.65165851443}},{"job":{"id":"OFFICE-MANAGER","title":"Office
+        Manager"},"salary_percentiles":{"percentile_25":25633.646219457092,"percentile_50":31338.929354838518,"percentile_75":38314.03791326728}},{"job":{"id":"OPERATIONS-MANAGER","title":"Operations
+        Manager"},"salary_percentiles":{"percentile_25":35662.99583271532,"percentile_50":45451.684462142104,"percentile_75":57927.14751549349}},{"job":{"id":"PHARMACIST","title":"Pharmacist"},"salary_percentiles":{"percentile_25":62152.944762893494,"percentile_50":69239.63004681148,"percentile_75":77134.33993044693}},{"job":{"id":"PHYSICIAN","title":"Physician"},"salary_percentiles":{"percentile_25":72160.76834967783,"percentile_50":98316.25340367465,"percentile_75":133952.08926400964}},{"job":{"id":"POSTDOCTORAL-RESEARCHER","title":"Postdoctoral
+        Researcher"},"salary_percentiles":{"percentile_25":32617.824430428962,"percentile_50":36889.765190759026,"percentile_75":41721.1999755509}},{"job":{"id":"PRODUCT-MANAGER","title":"Product
+        Manager"},"salary_percentiles":{"percentile_25":48955.97617673553,"percentile_50":60161.03156964141,"percentile_75":73930.70268800705}},{"job":{"id":"PROJECT-MANAGER","title":"Project
+        Manager"},"salary_percentiles":{"percentile_25":41984.94965513427,"percentile_50":51896.61119646853,"percentile_75":64148.183475267535}},{"job":{"id":"QA-ENGINEER","title":"QA
+        Engineer"},"salary_percentiles":{"percentile_25":34865.776503634945,"percentile_50":42979.86993654668,"percentile_75":52982.3054297925}},{"job":{"id":"RECEPTIONIST","title":"Receptionist"},"salary_percentiles":{"percentile_25":15886.72238084972,"percentile_50":19241.472853936964,"percentile_75":23304.635702269425}},{"job":{"id":"RESEARCH-SCIENTIST","title":"Research
+        Scientist"},"salary_percentiles":{"percentile_25":35365.903161074784,"percentile_50":45325.623126823266,"percentile_75":58090.192196646334}},{"job":{"id":"SALES-MANAGER","title":"Sales
+        Manager"},"salary_percentiles":{"percentile_25":52668.7597042028,"percentile_50":69610.48692064373,"percentile_75":92001.78467355187}},{"job":{"id":"SOFTWARE-ENGINEER","title":"Software
+        Engineer"},"salary_percentiles":{"percentile_25":46976.545349135944,"percentile_50":57257.71890126987,"percentile_75":69789.00533044708}},{"job":{"id":"SYSTEMS-ADMINISTRATOR","title":"Systems
+        Administrator"},"salary_percentiles":{"percentile_25":40416.970064228946,"percentile_50":48642.419425947366,"percentile_75":58541.86901813023}},{"job":{"id":"TEACHER","title":"Teacher"},"salary_percentiles":{"percentile_25":26652.587780479018,"percentile_50":32963.861039453295,"percentile_75":40769.629710187095}},{"job":{"id":"UX-DESIGNER","title":"UX
+        Designer"},"salary_percentiles":{"percentile_25":42907.80955015297,"percentile_50":52611.280124032244,"percentile_75":64509.161043377535}},{"job":{"id":"WAITER","title":"Waiter"},"salary_percentiles":{"percentile_25":11727.262822107354,"percentile_50":17950.384391517327,"percentile_75":27475.83171716856}},{"job":{"id":"WEB-DESIGNER","title":"Web
+        Designer"},"salary_percentiles":{"percentile_25":30676.883546359382,"percentile_50":37536.85726536742,"percentile_75":45930.86032455808}},{"job":{"id":"WEB-DEVELOPER","title":"Web
+        Developer"},"salary_percentiles":{"percentile_25":44256.51737062672,"percentile_50":54838.327898075,"percentile_75":67950.26778706071}}]}'
+  recorded_at: Mon, 24 Apr 2023 16:07:49 GMT
+recorded_with: VCR 6.1.0
