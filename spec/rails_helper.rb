@@ -67,7 +67,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('api_key') { ENV["movie_db_key"] }
   config.allow_http_connections_when_no_cassette = false
   config.default_cassette_options = {
-    record: :once
+    record: :new_episodes
   }
 end
 

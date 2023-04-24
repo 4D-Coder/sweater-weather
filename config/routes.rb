@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v0 do
       get '/forecast', to: 'home#index'
+      get '/salaries', to: 'salaries#show'
     end
   end
 end
