@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v0 do
       get '/forecast', to: 'home#index'
       post '/users', to: 'users#create'
+      resources :api_keys, only: :create
     end
   end
 end

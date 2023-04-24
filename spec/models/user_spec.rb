@@ -12,6 +12,10 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of :email }
     it { should have_secure_password }
   end
+
+  describe 'associations' do
+    it { should have_many :api_keys }
+  end
   
   it 'secure_password' do
     expect(@user.password_digest).to_not eq('password123')
