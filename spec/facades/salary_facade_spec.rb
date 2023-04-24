@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe ForecastFacade do
+RSpec.describe SalaryFacade do
   describe '.class_methods' do
     context '#initialize' do 
-      let(:map_quest_service) { MapquestGeoApiService.new }
-      let(:weather_service) { WeatherApiService.new }
-      let(:forecast) { described_class.new(map_quest_service, weather_service) }
+      let(:teleport_service) { TeleportApiService.new }
+      let(:salary) { described_class.new() }
 
       it 'exists' do
         expect(forecast).to be_a(ForecastFacade)
