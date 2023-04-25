@@ -33,17 +33,40 @@ RSpec.describe 'Users API' do
     context 'When unsuccessful' do
       let(:email_to_duplicate) { "whatever@example.com" }
       let(:headers) { { "CONTENT_TYPE" => "application/json" } }
-      let(:request_body) do
-        {
+
+      it 'Wont allow a user to be created with an email that already exists' do
+        request_body = {
           email: email_to_duplicate,
           password: "password",
           password_confirmation: "password"
         }
+
+        user = create(:user, email: email_to_duplicate)
+
+        post '/api/v0/users', params: request_body.to_json, headers: headers
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(422)
+
+        error_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(error_response[:data][:attributes][:message]).to eq("Email has already been taken")
       end
-      it 'Wont allow a user to be created with an email that already exists' do
-        user = create(:user, email_to_duplicate)
 
+      it 'Wont allow a user to be created if passwords dont match' do
+        request_body = {
+          email: email_to_duplicate,
+          password: "password",
+          password_confirmation: "paswod"
+        }
 
+        post '/api/v0/users', params: request_body.to_json, headers: headers
+
+        expect(response.status).to eq(422)
+
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(error_response[:data][:attributes][:message]).to eq("Password confirmation doesn't match Password")
       end
     end
   end
