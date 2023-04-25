@@ -13,7 +13,22 @@ RSpec.describe Activities do
     end
 
     it "has attrributes" do
-      require 'pry'; binding.pry
+      expect(@activities.id).to be_nil
+      expect(@activities.destination).to be_a String
+
+      expect(@activities.forecast).to be_a Hash
+      expect(@activities.forecast[:summary]).to be_a String
+      expect(@activities.forecast[:temperature]).to be_a String
+      
+      expect(@activities.activities).to be_a Hash
+
+      @activities.activities.each do |activity|
+        expect(activity.first).to be_a String
+        expect(activity.second).to be_a Hash
+        expect(activity.second[:type]).to be_a String
+        expect(activity.second[:participants]).to be_an Integer
+        expect(activity.second[:price]).to be_a(Float).or be_an(Integer)
+      end      
     end
   end
 end
