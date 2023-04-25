@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://example.com/api/v0/users
+    body:
+      encoding: UTF-8
+      string: '{"email":"whatever@example.com","password":"password","password_confirmation":"password"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Cache-Control:
+      - max-age=604800
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Tue, 25 Apr 2023 19:43:22 GMT
+      Expires:
+      - Tue, 02 May 2023 19:43:22 GMT
+      Server:
+      - EOS (vny/0451)
+      Content-Length:
+      - '433'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<!DOCTYPE html PUBLIC
+        \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n\t<head>\n\t\t<title>404
+        - Not Found</title>\n\t</head>\n\t<body>\n\t\t<h1>404 - Not Found</h1>\n\t\t<script
+        type=\"text/javascript\" src=\"//obj.ac.bcon.ecdns.net/ec_tpm_bcon.js\"></script>\n\t</body>\n</html>\n"
+  recorded_at: Tue, 25 Apr 2023 19:43:22 GMT
+recorded_with: VCR 6.1.0
