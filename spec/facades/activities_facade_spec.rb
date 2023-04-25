@@ -12,10 +12,11 @@ RSpec.describe ActivitiesFacade do
         expect(@activities.id).to be_nil
         expect(@activities.destination).to eq("chicago,il")
         expect(@activities.activities).to be_a Hash
+     
         expect(@activities.forecast).to be_a Hash
+        expect(@activities.forecast).to have_key(:temperature)
 
-        require 'pry'; binding.pry
-        
+        expect(@activities.forecast[:temperature]).to include("F")
       end
     end
   end

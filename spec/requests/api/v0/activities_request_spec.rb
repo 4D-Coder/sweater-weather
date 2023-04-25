@@ -8,6 +8,7 @@ RSpec.describe "Activities API", :vcr do
     end
 
     it "returns the forecast and two activities suitable for it" do
+      require 'pry'; binding.pry
       expect(@response.status).to eq(200)
       expect(@response[:data]).to be_a Hash
       expect(@response[:data]).to have_key(:attributes)
