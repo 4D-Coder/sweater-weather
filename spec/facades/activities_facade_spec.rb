@@ -8,6 +8,8 @@ RSpec.describe ActivitiesFacade do
       end
 
       it "returns the value of a PORO containing forecast and suitable activities for it" do
+        expect(@activities).to be_a Activities
+        expect(@activities.destination).to eq("chicago")
         
       end
     end

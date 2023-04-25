@@ -3,8 +3,7 @@ class ActivitiesFacade
     response = WeatherApiService.new.get_5_day_forecast_by(destination)
     parsed = JSON.parse(response.body, symbolize_names: true)
     forecast = Forecast.new(parsed)
-    activities = BoredApiService.new.get_activities(destination)
-    require 'pry'; binding.pry
-    Activities.new(forecast_poro, activities)
+    activities_service = BoredApiService.new
+    Activities.new(forecast, activities_service)
   end
 end

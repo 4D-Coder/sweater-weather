@@ -62,8 +62,11 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
-  config.configure_rspec_metadata!
   config.hook_into :webmock
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes" 
+  config.allow_http_connections_when_no_cassette = true
+  config.default_cassette_options = {
+    record: :new_episodes
+  }
 end
 
