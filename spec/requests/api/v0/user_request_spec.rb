@@ -3,70 +3,47 @@ require 'rails_helper'
 RSpec.describe 'Users API' do
   describe 'user create' do
     context 'When successful' do
-      let (:request_body) do
+      let(:request_body) do
         {
-          "email": "whatever@example.com",
-          "password": "password",
-          "password_confirmation": "password"
+          email: "whatever@example.com",
+          password: "password",
+          password_confirmation: "password"
         }
       end
+      let(:headers) { { "CONTENT_TYPE" => "application/json" } }
 
-      it 'post api/v0/users' do
-        VCR.use_cassette('POST user_create') do
-          post '/api/v0/users' do |req|
-            require 'pry'; binding.pry
-          end
-          expect(response.status).to eq(200)
+      it 'persists in the database' do
+        post '/api/v0/users', params: request_body.to_json, headers: headers
 
-          forecast_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to be_successful
+        expect(response.status).to eq(201)
+        
+        new_user = User.last
+        expect(new_user.email).to eq("whatever@example.com")
 
-          expect(forecast_json).to have_key(:data)
+        parsed = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(parsed[:data][:id]).to eq(new_user.id.to_s)
+        expect(parsed[:data][:attributes][:email]).to eq(new_user.email)
+        expect(parsed[:data][:attributes][:api_key]).to eq(new_user.api_key)
 
-          forecast_data = forecast_json[:data]
-          expect(forecast_data.keys).to eq([:id, :type, :attributes])
-          expect(forecast_data[:id]).to be_nil
-          expect(forecast_data[:type]).to eq("forecast")
-          expect(forecast_data[:attributes]).to be_a Hash
+      end
+    end
 
-          attributes = forecast_data[:attributes]
-          expect(attributes.keys).to eq([:current_weather, :daily_weather, :hourly_weather])
-          
-          current_weather = attributes[:current_weather]
-          expect(current_weather).to be_a Hash
-          expect(current_weather[:last_updated]).to be_a String
-          expect(current_weather[:temperature]).to be_a Float
-          expect(current_weather[:feels_like]).to be_a Float
-          expect(current_weather[:humidity]).to be_a(Float).or be_an(Integer)
-          expect(current_weather[:uvi]).to be_a(Float).or be_an(Integer)
-          expect(current_weather[:visibility]).to be_a(Float).or be_an(Integer)
-          expect(current_weather[:condition]).to be_a String
-          expect(current_weather[:icon]).to be_a String
-          
-          expect(attributes[:daily_weather]).to be_an Array
-          attributes[:daily_weather].each do |day|
-            expect(day.keys).to eq([
-              :date, :sunrise, :sunset, :max_temp, :min_temp, :condition, :icon
-            ])
-            expect(day[:date]).to be_a String
-            expect(day[:sunrise]).to be_a String
-            expect(day[:sunset]).to be_a String
-            expect(day[:max_temp]).to be_a Float
-            expect(day[:min_temp]).to be_a Float
-            expect(day[:condition]).to be_a String
-            expect(day[:icon]).to be_a String
-          end
+    context 'When unsuccessful' do
+      let(:email_to_duplicate) { "whatever@example.com" }
+      let(:headers) { { "CONTENT_TYPE" => "application/json" } }
+      let(:request_body) do
+        {
+          email: email_to_duplicate,
+          password: "password",
+          password_confirmation: "password"
+        }
+      end
+      it 'Wont allow a user to be created with an email that already exists' do
+        user = create(:user, email_to_duplicate)
 
-          expect(attributes[:hourly_weather]).to be_an Array
-          attributes[:hourly_weather].each do |hour|
-            expect(hour.keys).to eq([
-              :time, :temperature, :condition, :icon
-            ])
-            expect(hour[:time]).to be_a String
-            expect(hour[:temperature]).to be_a Float
-            expect(hour[:condition]).to be_a String
-            expect(hour[:icon]).to be_a String
-          end
-        end
+
       end
     end
   end

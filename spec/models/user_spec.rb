@@ -4,7 +4,9 @@ RSpec.describe User, type: :model do
   puts "Running tests in #{Rails.env} environment..."
 
   before(:each) do
-    @user = create(:user)
+    @password = 'password123'
+
+    @user = create(:user, password: @password, password_confirmation: @password)
   end
 
   describe 'validations' do
@@ -12,13 +14,13 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of :email }
     it { should have_secure_password }
   end
-
-  describe 'associations' do
-    it { should have_many :api_keys }
-  end
   
   it 'secure_password' do
-    expect(@user.password_digest).to_not eq('password123')
+    expect(@user.password_digest).to_not eq(@password)
     expect(@user).to_not have_attribute(:password)
   end 
+
+  it 'generate_api_key' do
+    expect(@user.api_key).to be_present
+  end
 end

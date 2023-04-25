@@ -52,6 +52,7 @@ group :development, :test do
   gem "webmock" # https://github.com/bblimke/webmock
   gem "simplecov"
   gem "shoulda-matchers", "~> 5.0"
+  gem "net-http"
 end
 
 group :development do
