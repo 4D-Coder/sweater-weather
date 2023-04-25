@@ -3,7 +3,7 @@ class ActivitiesFacade
     response = WeatherApiService.new.get_5_day_forecast_by(destination)
     parsed = JSON.parse(response.body, symbolize_names: true)
     forecast = Forecast.new(parsed)
-    activities_service = BoredApiService.new
-    Activities.new(destination, forecast, activities_service)
+    bored_api_service = BoredApiService.new
+    Activities.new(destination, forecast, bored_api_service)
   end
 end
