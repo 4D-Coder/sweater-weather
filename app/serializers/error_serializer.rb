@@ -2,10 +2,6 @@ class ErrorSerializer
   include JSONAPI::Serializer
 
   attribute :message do |object|
-    object.errors.full_messages.pop
-  end
-
-  attribute :errors do |object|
     errors = object.errors.map do |error|
       error.full_message
     end.join(", ")
@@ -17,5 +13,13 @@ class ErrorSerializer
 
   def self.not_found
     { message: "Not Found" }
+  end
+
+  def self.invalid_payload
+    { message: "Access Denied: Invalid Payload"}
+  end
+
+  def self.unprocessable_entity
+    { message: "Unprocessable Entity"}
   end
 end

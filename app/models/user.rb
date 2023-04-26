@@ -5,8 +5,7 @@ class User < ApplicationRecord
                         uniqueness: true
   validates :api_key,   uniqueness: true, on: :update,
                         presence: :skip_new_user_validation
-  validates :password,  presence: true,
-                        confirmation: true
+  validates :password,  presence: true
   has_secure_password
 
   private

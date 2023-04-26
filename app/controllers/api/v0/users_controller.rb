@@ -1,13 +1,12 @@
 class Api::V0::UsersController < ApplicationController
   def create
-    user = User.new(create_params)
-    if user.valid?
-      user.save
-      render json: UsersSerializer.new(user).serializable_hash, status: :created
-    else
-      serialized_errors = ErrorSerializer.new(user).serializable_hash
-      render json: serialized_errors, status: :unprocessable_entity
-    end
+    # if request.query_parameters.present?
+    #   serialized_errors = ErrorSerializer.invalid_payload
+    #   render json: serialized_errors, status: :invalid_payload
+    # else
+      user = User.create!(create_params)
+      render json: UsersSerializer.new(user), status: :created
+  #   end
   end
 
   private

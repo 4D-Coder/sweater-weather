@@ -46,12 +46,19 @@ RSpec.describe 'Users API' do
 
         post '/api/v0/users', params: request_body.to_json, headers: headers
 
-        expect(response).to_not be_successful
-        expect(response.status).to eq(422)
+        expect(response.status).to eq(400)
 
         error_response = JSON.parse(response.body, symbolize_names: true)
 
-        expect(error_response[:data][:attributes][:message]).to eq("Email has already been taken")
+        expect(error_response[:error]).to be_an Array
+
+        details = error_response[:error][0]
+
+        expect(details).to be_a Hash
+        expect(details[:title]).to be_a String
+        expect(details[:title]).to eq("Validation failed: Email has already been taken")
+        expect(details[:status]).to be_a String
+        expect(details[:status]).to eq("400")
       end
 
       it 'Wont allow a user to be created if passwords dont match' do
@@ -63,11 +70,19 @@ RSpec.describe 'Users API' do
 
         post '/api/v0/users', params: request_body.to_json, headers: headers
 
-        expect(response.status).to eq(422)
+        expect(response.status).to eq(400)
 
         error_response = JSON.parse(response.body, symbolize_names: true)
-        
-        expect(error_response[:data][:attributes][:message]).to eq("Password confirmation doesn't match Password")
+
+        expect(error_response[:error]).to be_an Array
+
+        details = error_response[:error][0]
+
+        expect(details).to be_a Hash
+        expect(details[:title]).to be_a String
+        expect(details[:title]).to eq("Validation failed: Password confirmation doesn't match Password")
+        expect(details[:status]).to be_a String
+        expect(details[:status]).to eq("400")
       end
     end
   end
