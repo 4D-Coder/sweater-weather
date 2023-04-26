@@ -24,6 +24,7 @@ RSpec.describe 'Users API' do
         parsed = JSON.parse(response.body, symbolize_names: true)
         
         expect(parsed[:data][:id]).to eq(new_user.id.to_s)
+        expect(parsed[:data][:type]).to eq("users")
         expect(parsed[:data][:attributes][:email]).to eq(new_user.email)
         expect(parsed[:data][:attributes][:api_key]).to eq(new_user.api_key)
 

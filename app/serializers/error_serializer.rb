@@ -10,4 +10,8 @@ class ErrorSerializer
       error.full_message
     end
   end
+
+  def self.bad_request
+    { message: "Bad Request: Invalid query" }
+  end
 end
