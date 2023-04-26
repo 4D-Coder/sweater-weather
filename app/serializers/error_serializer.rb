@@ -22,4 +22,13 @@ class ErrorSerializer
   def self.unprocessable_entity
     { message: "Unprocessable Entity"}
   end
+
+  def self.invalid_login
+    { 
+      error: [
+        title: "Bad Credentials",
+        status: "400"
+      ]
+    }
+  end
 end

@@ -46,11 +46,16 @@ RSpec.describe 'Sessions API' do
 
         post '/api/v0/sessions', params: request_body.to_json, headers: headers
 
-        expect(response).to_not be_successful
-        expect(response.status).to eq(400)
+        error_response = JSON.parse(response.body, symbolize_names: true)
         
-        parsed = JSON.parse(response.body, symbolize_names: true)
-        expect(parsed[:message]).to eq("Bad Request: Invalid query")
+        expect(error_response[:error]).to be_an Array
+        details = error_response[:error][0]
+
+        expect(details).to be_a Hash
+        expect(details[:title]).to be_a String
+        expect(details[:title]).to eq("Bad Credentials")
+        expect(details[:status]).to be_a String
+        expect(details[:status]).to eq("400")
       end
 
       it "returns a serialized error when email does not exist" do
@@ -61,10 +66,19 @@ RSpec.describe 'Sessions API' do
 
         post '/api/v0/sessions', params: request_body.to_json, headers: headers
 
+        expect(response).to_not be_successful
         expect(response.status).to eq(400)
         
-        parsed = JSON.parse(response.body, symbolize_names: true)
-        expect(parsed[:message]).to eq("Bad Request: Invalid query")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(error_response[:error]).to be_an Array
+        details = error_response[:error][0]
+
+        expect(details).to be_a Hash
+        expect(details[:title]).to be_a String
+        expect(details[:title]).to eq("Bad Credentials")
+        expect(details[:status]).to be_a String
+        expect(details[:status]).to eq("400")
       end
 
       it "returns a serialized error when email exist, but the password is incorrect" do
@@ -74,11 +88,20 @@ RSpec.describe 'Sessions API' do
         }
   
         post '/api/v0/sessions', params: request_body.to_json, headers: headers
-  
-        expect(response.status).to eq(400)
         
-        parsed = JSON.parse(response.body, symbolize_names: true)
-        expect(parsed[:message]).to eq("Bad Request: Invalid query")
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(error_response[:error]).to be_an Array
+        details = error_response[:error][0]
+
+        expect(details).to be_a Hash
+        expect(details[:title]).to be_a String
+        expect(details[:title]).to eq("Bad Credentials")
+        expect(details[:status]).to be_a String
+        expect(details[:status]).to eq("400")
       end
     end
   end
