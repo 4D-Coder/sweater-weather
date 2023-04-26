@@ -4,10 +4,13 @@ class Api::V0::RoadTripController < ApplicationController
       serialized_errors = ErrorSerializer.invalid_payload
       render json: serialized_errors, status: :bad_request
     else
-      require 'pry'; binding.pry
-      user = User.find_by(create_params[:api_key])
-      trip = RoadTripFacade.new(user, create_params[:origin], create_params[:destination])
-      render json: RoadTripSerializer.new(trip), status: :created
+      user = User.find_by(api_key: create_params[:api_key])
+      if !user.nil?
+        trip = RoadTripFacade.new(create_params[:origin], create_params[:destination])
+        render json: RoadTripSerializer.new(trip), status: :created
+      else
+        # error
+      end
     end
   end
 

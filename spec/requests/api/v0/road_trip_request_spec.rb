@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'RoadTrip API' do
   describe 'roadtrip show' do
+    let(:user) { create(:user) }
+    
     context 'When successful' do
-      let(:user) { create(:user) }
       let(:request_body) do
         {
           origin: "Cincinatti,OH",
@@ -28,7 +29,6 @@ RSpec.describe 'RoadTrip API' do
           }
         }
       }
-
       end
       let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
 
