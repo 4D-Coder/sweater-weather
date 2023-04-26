@@ -4,17 +4,15 @@ class ApplicationController < ActionController::API
 
   def render_not_found_response(exception)
     render json: { error: [
-                            title: exception.message,
-                            status: "404"
-                          ]
-                        }, status: 404
+      title: exception.message,
+      status: '404'
+    ] }, status: 404
   end
 
   def render_invalid_record(exception)
     render json: { error: [
-                            title: exception.message,
-                            status: '400'
-                          ] 
-                        }, status: 400
+      title: exception.message,
+      status: '400'
+    ] }, status: 400
   end
 end

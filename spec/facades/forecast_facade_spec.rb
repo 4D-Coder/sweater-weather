@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ForecastFacade do
   describe '.class_methods' do
-    context '#initialize' do 
+    context '#initialize' do
       let(:map_quest_service) { MapquestGeoApiService.new }
       let(:weather_service) { WeatherApiService.new }
       let(:forecast) { described_class.new(map_quest_service, weather_service) }
@@ -11,7 +11,7 @@ RSpec.describe ForecastFacade do
         expect(forecast).to be_a(ForecastFacade)
       end
 
-      it 'has attributes' do 
+      it 'has attributes' do
         expect(forecast.params).to be_a(Hash)
         expect(forecast.mapquest_service).to be_a(MapquestGeoApiService)
         expect(forecast.weather_service).to be_a(WeatherApiService)
@@ -22,24 +22,24 @@ RSpec.describe ForecastFacade do
   describe '.instance_methods' do
     let(:map_quest_service) { MapquestGeoApiService.new }
     let(:weather_service) { WeatherApiService.new }
-    
+
     before do
-      @location_params = {"location"=>"denver,co"}
+      @location_params = { 'location' => 'denver,co' }
       @forecast_facade = described_class.new(map_quest_service, weather_service, @location_params)
     end
 
     context 'location_data' do
-      it "can receive a location parameter and return a location object" do
+      it 'can receive a location parameter and return a location object' do
         VCR.use_cassette('GET_mapquest_coordinates') do
           coordinates = @forecast_facade.location_coordinates
 
-          expect(coordinates).to eq("39.74001,-104.99202")
+          expect(coordinates).to eq('39.74001,-104.99202')
         end
       end
     end
 
     context 'five_day_forecast' do
-      it "returns forecast objects to be serialized" do
+      it 'returns forecast objects to be serialized' do
         VCR.use_cassette('GET_5_day_forecast', record: :new_episodes) do
           forecast = @forecast_facade.five_day_forecast
 
@@ -50,7 +50,7 @@ RSpec.describe ForecastFacade do
           forecast.daily_weather.each do |day|
             expect(day).to be_a(DailyWeather)
           end
-          
+
           expect(forecast.hourly_weather).to be_an Array
           expect(forecast.hourly_weather.count).to eq(24)
           forecast.hourly_weather.each do |hour|
@@ -59,6 +59,5 @@ RSpec.describe ForecastFacade do
         end
       end
     end
-
   end
 end

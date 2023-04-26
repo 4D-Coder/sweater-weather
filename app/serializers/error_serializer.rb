@@ -4,30 +4,30 @@ class ErrorSerializer
   attribute :message do |object|
     errors = object.errors.map do |error|
       error.full_message
-    end.join(", ")
+    end.join(', ')
   end
 
   def self.bad_request
-    { message: "Bad Request: Invalid query" }
+    { message: 'Bad Request: Invalid query' }
   end
 
   def self.not_found
-    { message: "Not Found" }
+    { message: 'Not Found' }
   end
 
   def self.invalid_payload
-    { message: "Access Denied: Invalid Payload"}
+    { message: 'Access Denied: Invalid Payload' }
   end
 
   def self.unprocessable_entity
-    { message: "Unprocessable Entity"}
+    { message: 'Unprocessable Entity' }
   end
 
   def self.invalid_login
-    { 
+    {
       error: [
-        title: "Bad Credentials",
-        status: "400"
+        title: 'Bad Credentials',
+        status: '400'
       ]
     }
   end
