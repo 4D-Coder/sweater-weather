@@ -63,20 +63,23 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
 
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-    end
-  end
 
-  VCR.configure do |config|
-    config.hook_into :webmock
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.filter_sensitive_data('api_key') { ENV['movie_db_key'] }
-    config.allow_http_connections_when_no_cassette = false
-    config.default_cassette_options = {
-      record: :once
-    }
+
+end  
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
+end
+
+VCR.configure do |config|
+  config.hook_into :webmock
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  config.filter_sensitive_data('api_key') { ENV['movie_db_key'] }
+  config.allow_http_connections_when_no_cassette = false
+  config.default_cassette_options = {
+    record: :once
+  }
 end
