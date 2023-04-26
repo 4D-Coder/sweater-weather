@@ -6,18 +6,18 @@ RSpec.describe WeatherApiService do
 
     context 'get_days_forecast_by(city)' do
       before do
-        @location_coordinates = "39.74001,-104.99202"
+        @location_coordinates = '39.74001,-104.99202'
       end
 
-      it "can retreive 5-day forecast and hourly forecast for each day" do
-        VCR.use_cassette('GET 5_day_forecast', record: :new_episodes ) do
+      it 'can retreive 5-day forecast and hourly forecast for each day' do
+        VCR.use_cassette('GET 5_day_forecast', record: :new_episodes) do
           response = weather_api_service.get_5_day_forecast_by(@location_coordinates)
 
           expect(response.status).to eq(200)
-          
+
           json = JSON.parse(response.body, symbolize_names: true)
 
-          expect(json.keys).to eq([:location, :current, :forecast])
+          expect(json.keys).to eq(%i[location current forecast])
           expect(json[:location]).to be_a Hash
           expect(json[:current]).to be_a Hash
           expect(json[:forecast]).to be_a Hash
@@ -52,13 +52,12 @@ RSpec.describe WeatherApiService do
             expect(day[:astro]).to be_a Hash
             expect(day[:astro][:sunrise]).to be_a String
             expect(day[:astro][:sunset]).to be_a String
-            
+
             expect(day[:day]).to be_a Hash
             day_data = day[:day]
 
             expect(day_data[:maxtemp_f]).to be_a Float
             expect(day_data[:mintemp_f]).to be_a Float
-
 
             expect(day_data[:condition]).to be_a Hash
             expect(day_data[:condition][:text]).to be_a String
@@ -74,7 +73,7 @@ RSpec.describe WeatherApiService do
               expect(hour[:temp_f]).to be_a Float
 
               condition = hour[:condition]
-              
+
               expect(condition).to be_a Hash
               expect(condition[:text]).to be_a String
               expect(condition[:icon]).to be_a String

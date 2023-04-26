@@ -1,5 +1,4 @@
 class Api::V0::HomeController < ApplicationController
-
   def index
     mapquest_service = MapquestGeoApiService.new
     weather_service = WeatherApiService.new

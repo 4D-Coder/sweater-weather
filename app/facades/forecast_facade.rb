@@ -10,7 +10,7 @@ class ForecastFacade
   end
 
   def location_coordinates
-    response = @mapquest_service.get_coordinates(@params["location"])
+    response = @mapquest_service.get_coordinates(@params['location'])
     parsed = JSON.parse(response.body, symbolize_names: true)
     Location.new(parsed).coordinates
   end

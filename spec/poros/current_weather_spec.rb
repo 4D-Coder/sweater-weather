@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CurrentWeather do
-  let(:location_coordinates) {"39.74001,-104.99202"}
+  let(:location_coordinates) { '39.74001,-104.99202' }
   let(:forecast_data) do
-    VCR.use_cassette('GET 5_day_forecast', record: :new_episodes ) do
+    VCR.use_cassette('GET 5_day_forecast', record: :new_episodes) do
       response = WeatherApiService.new.get_5_day_forecast_by(location_coordinates)
       JSON.parse(response.body, symbolize_names: true)
     end

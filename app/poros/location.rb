@@ -1,7 +1,7 @@
 class Location
-    attr_reader :data,
-                :city_state,
-                :coordinates
+  attr_reader :data,
+              :city_state,
+              :coordinates
 
   def initialize(data = {})
     @data = data
