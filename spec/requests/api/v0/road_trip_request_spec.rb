@@ -36,21 +36,34 @@ RSpec.describe 'RoadTrip API' do
         post('/api/v0/road_trip', params: request_body.to_json, headers: headers)
 
         expect(response).to be_successful
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(201)
 
         road_trip = JSON.parse(response.body, symbolize_names: true)
 
-        expected_keys.each do |key, value|
-          expect(road_trip).to have_key(key)
-          expect(road_trip[key]).to be_a(value.class)
+        expect(road_trip[:data]).to be_a Hash
+        expect(road_trip[:data]).to have_key(:id)
+        expect(road_trip[:data][:id]).to be_nil
+
+        expect(road_trip[:data]).to have_key(:type)
+        expect(road_trip[:data][:type]).to be_a String
         
-          if value.is_a?(Hash)
-            value.each do |nested_key, nested_value|
-              expect(road_trip[key]).to have_key(nested_key)
-              expect(road_trip[key][nested_key]).to be_a(nested_value)
-            end
-          end
-        end
+        expect(road_trip[:data]).to have_key(:attributes)
+        expect(road_trip[:data][:attributes]).to be_a Hash
+        
+        attributes = road_trip[:data][:attributes]
+
+        expect(attributes).to have_key(:start_city)
+        expect(attributes[:start_city]).to be_a String
+        
+        expect(attributes).to have_key(:end_city)
+        expect(attributes[:start_city]).to be_a String
+
+        expect(attributes).to have_key(:start_city)
+        expect(attributes[:start_city]).to be_a String
+        
+
+        
+        require 'pry'; binding.pry
       end
     end
   end

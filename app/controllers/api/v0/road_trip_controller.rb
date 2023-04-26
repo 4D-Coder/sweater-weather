@@ -6,10 +6,8 @@ class Api::V0::RoadTripController < ApplicationController
     else
       user = User.find_by(api_key: create_params[:api_key])
       if !user.nil?
-        trip = RoadTripFacade.new(create_params[:origin], create_params[:destination])
+        trip = RoadTripFacade.new(create_params[:origin], create_params[:destination]).road_trip_summary
         render json: RoadTripSerializer.new(trip), status: :created
-      else
-        # error
       end
     end
   end
