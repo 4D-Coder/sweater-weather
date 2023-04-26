@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RoadTripFacade do
-  let(:road_trip) { described_class.new("missoula, mt", "bozeman, mt") }
+  let(:road_trip) { described_class.new("Missoula, MT", "Bozeman, MT") }
 
   describe '.class_methods' do
 
@@ -13,7 +13,7 @@ RSpec.describe RoadTripFacade do
 
       it 'has attributes' do
         expect(road_trip.origin).to be_a String
-        expect(forecast.destination).to be_a String
+        expect(road_trip.destination).to be_a String
       end
     end
   end
