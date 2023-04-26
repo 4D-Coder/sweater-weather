@@ -50,7 +50,35 @@ RSpec.describe 'Sessions API' do
         expect(response.status).to eq(400)
         
         parsed = JSON.parse(response.body, symbolize_names: true)
-        expect(parsed[:message]).to_eq("Bad Request: Invalid query")
+        expect(parsed[:message]).to eq("Bad Request: Invalid query")
+      end
+
+      it "returns a serialized error when email does not exist" do
+        request_body = {
+          email: "nonexistentemail@larson-daugherty.test",
+          password: password
+        }
+
+        post '/api/v0/sessions', params: request_body.to_json, headers: headers
+
+        expect(response.status).to eq(400)
+        
+        parsed = JSON.parse(response.body, symbolize_names: true)
+        expect(parsed[:message]).to eq("Bad Request: Invalid query")
+      end
+
+      it "returns a serialized error when email exist, but the password is incorrect" do
+        request_body = {
+          email: "keneth_satterfield@larson-daugherty.test",
+          password: "wrongpassword"
+        }
+  
+        post '/api/v0/sessions', params: request_body.to_json, headers: headers
+  
+        expect(response.status).to eq(400)
+        
+        parsed = JSON.parse(response.body, symbolize_names: true)
+        expect(parsed[:message]).to eq("Bad Request: Invalid query")
       end
     end
   end
