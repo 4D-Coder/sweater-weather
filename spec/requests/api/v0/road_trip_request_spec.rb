@@ -12,28 +12,27 @@ RSpec.describe 'RoadTrip API' do
         }
       end
       let(:expected_keys) do
-        :data => {
-          :id => nil,
-          :type => "road_trip",
-          :attributes => {
-            :start_city => String,
-            :end_city => String,
-            :travel_time => String,
-            :weather_at_eta => {
-              :datetime => String,
-              :temperature => Float,
-              :condition => String
+      {
+        data: {
+          id: nil,
+          type: "road_trip",
+          attributes: {
+            start_city: String,
+            end_city: String,
+            travel_time: String,
+            weather_at_eta: {
+              datetime: String,
+              temperature: Float,
+              condition: String
             }
           }
         }
+      }
+
       end
       let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
 
-      it 'can create roadtrip' do
-        request_body.each do |key, value|
-
-          require 'pry'; binding.pry
-        end
+      it 'can create a roadtrip' do
         post('/api/v0/road_trip', params: request_body.to_json, headers: headers)
 
         expect(response).to be_successful
